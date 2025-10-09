@@ -5,7 +5,7 @@ sources:
     schema: gz_raw_data
     tables:
       - name: products
-        identifier: raw_gz_products
+        identifier: raw_gz_product
         description: "Includes raw products data"
         columns:
           - name: products_id
@@ -15,6 +15,7 @@ sources:
           - name: purchase_price
             description: "Prices of the products"
             tests:
+              - unique
               - not_null
         tests:
           - unique:
@@ -44,10 +45,9 @@ sources:
             description: "Quantity of the products that sold"
             tests:
               - not_null
-
         tests:
           - unique:
-              column_name: 'date_date || orders_id || pdt_id'
+              column_name: 'date_date || orders_id || pdt_id || revenue || quantity'
 
       - name: ship
         identifier: raw_gz_ship
@@ -68,6 +68,7 @@ sources:
           - name: ship_cost
             description: "Cost of the shipping"
             tests:
+              - unique
               - not_null
         tests:
           - unique:
