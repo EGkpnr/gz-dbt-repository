@@ -1,0 +1,75 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: gz_raw_data
+    tables:
+      - name: raw_gz_product
+        identifier: raw_gz_product
+        description: "Normalized products view"
+        columns:
+          - name: products_id
+            description: "ID of the products"
+            tests:
+              - not_null
+          - name: purchase_price
+            description: "Prices of the products"
+            tests:
+              - unique
+              - not_null
+        tests:
+          - unique:
+              column_name: 'products_id || purchase_price'
+
+      - name: raw_gz_sales
+        identifier: raw_gz_sales
+        description: "Includes raw sales data"
+        columns:
+          - name: date_date
+            description: "Date of the sales"
+            tests:
+              - not_null
+          - name: orders_id
+            description: "ID of the order"
+            tests:
+              - not_null
+          - name: products_id
+            description: "ID of the product"
+            tests:
+              - not_null
+          - name: revenue
+            description: "Revenue of the sales"
+            tests:
+              - not_null
+          - name: quantity
+            description: "Quantity of the products that sold"
+            tests:
+              - not_null
+        tests:
+          - unique:
+              column_name: 'date_date || orders_id || products_id || revenue || quantity'
+
+      - name: raw_gz_ship
+        identifier: raw_gz_ship
+        description: "Includes raw ship data"
+        columns:
+          - name: orders_id
+            description: "ID of the order"
+            tests:
+              - not_null
+          - name: shipping_fee
+            description: "Fee of the shipping"
+            tests:
+              - not_null
+          - name: log_cost
+            description: "Cost of the logistic"
+            tests:
+              - not_null
+          - name: ship_cost
+            description: "Cost of the shipping"
+            tests:
+              - unique
+              - not_null
+        tests:
+          - unique:
+              column_name: 'orders_id || shipping_fee || log_cost || ship_cost'
