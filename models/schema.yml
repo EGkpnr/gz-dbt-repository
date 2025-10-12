@@ -4,9 +4,9 @@ sources:
   - name: raw
     schema: gz_raw_data
     tables:
-      - name: products
+      - name: raw_gz_product
         identifier: raw_gz_product
-        description: "Includes raw products data"
+        description: "Normalized products view"
         columns:
           - name: products_id
             description: "ID of the products"
@@ -21,7 +21,7 @@ sources:
           - unique:
               column_name: 'products_id || purchase_price'
 
-      - name: sales
+      - name: raw_gz_sales
         identifier: raw_gz_sales
         description: "Includes raw sales data"
         columns:
@@ -49,7 +49,7 @@ sources:
           - unique:
               column_name: 'date_date || orders_id || products_id || revenue || quantity'
 
-      - name: ship
+      - name: raw_gz_ship
         identifier: raw_gz_ship
         description: "Includes raw ship data"
         columns:
