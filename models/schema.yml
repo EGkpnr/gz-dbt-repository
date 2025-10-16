@@ -4,7 +4,7 @@ sources:
   - name: raw
     schema: gz_raw_data
     tables:
-      - name: raw_gz_product
+      - name: products
         identifier: raw_gz_product
         description: "Normalized products view"
         columns:
@@ -21,7 +21,7 @@ sources:
           - unique:
               column_name: 'products_id || purchase_price'
 
-      - name: raw_gz_sales
+      - name: sales
         identifier: raw_gz_sales
         description: "Includes raw sales data"
         columns:
@@ -49,7 +49,7 @@ sources:
           - unique:
               column_name: 'date_date || orders_id || products_id || revenue || quantity'
 
-      - name: raw_gz_ship
+      - name: shipping
         identifier: raw_gz_ship
         description: "Includes raw ship data"
         columns:
@@ -57,7 +57,7 @@ sources:
             description: "ID of the order"
             tests:
               - not_null
-          - name: shipping_fee
+          - name: ship
             description: "Fee of the shipping"
             tests:
               - not_null
@@ -73,3 +73,38 @@ sources:
         tests:
           - unique:
               column_name: 'orders_id || shipping_fee || log_cost || ship_cost'
+
+      - name: adwords
+        identifier: raw_gz_adwords
+
+      - name: bing
+        identifier: raw_gz_bing        
+      
+      - name: criteo
+        identifier: raw_gz_criteo
+
+      - name: facebook
+        identifier: raw_gz_facebook 
+
+      - name: int_campaigns
+        description: "All data from the campaigns"
+        columns:
+          - name: paid_source
+            tests:
+              - not_null
+          - name: campaign_name
+            tests:
+              - not_null
+
+      - name: finance_campaigns_day
+        description: global KPI
+        columns:
+          - name: ads_margin
+            description: "operational_margin - ads_cost"
+            tests:
+              - not_null
+          - name: average_basket
+            description: "Daily average basket"
+            tests:
+              - not_null
+

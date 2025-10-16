@@ -1,5 +1,5 @@
 with
-    source as (select * from {{ source("raw", "raw_gz_ship") }}),
+    source as (select * from {{ source("raw", "shipping") }}),
     renamed as (
         select
             orders_id,
@@ -14,4 +14,4 @@ with
             or ship_cost is not null
     )
 select *
-from renamed
+from renamed 
