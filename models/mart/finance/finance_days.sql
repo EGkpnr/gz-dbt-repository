@@ -5,7 +5,7 @@ with
             count(distinct orders_id) as nb_transactions,
             round(sum(revenue), 0) as revenue,
             round(sum(margin), 0) as margin,
-            round(sum(operational_margin), 0) as operational_margin,
+            cast(round(sum(operational_margin), 0) as float64) as operational_margin,
             round(sum(purchase_cost), 0) as purchase_cost,
             round(sum(shipping_fee), 0) as shipping_fee,
             round(sum(log_cost), 0) as log_cost,
