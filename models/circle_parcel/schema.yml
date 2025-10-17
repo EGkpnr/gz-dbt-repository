@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: stg_cc_parcel
+    description: "Clean version of parcel table"
+    columns:
+      - name: parcel_id
+        description: "ID of the parcel"
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_cc_parcel_products
+    description: "Clean version of parcel_product table"
+    columns:
+      - name: 'parcel_id || model_name'
+        description: "PK test column"
+        tests:
+          - unique
+          - not_null        
