@@ -35,11 +35,16 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   my_new_project:
     # Applies to all files under models/example/
-    mart:
+    marts:
       +materialized: table
       finance:
-      +schema: finance
-    models:
-      +schema: 'parcel_dbt_dev'
+        +materialized: table
+    circle_parcel:
+      staging:
+        schema: 'parcel_staging'
+      intermediate:
+        schema: 'parcel_intermediate'
+      mart:
+        schema: 'parcel_dbt_dev'
 flags:
   require_generic_test_arguments_property: true

@@ -15,6 +15,5 @@ select
     delivery_time,
     delay,
     ppdt.qty
-from {{ref('cc_parcel')}} as cpt
-right join {{ref('stg_cc_parcel_products')}} as ppdt
-    on cpt.parcel_id = ppdt.parcel_id
+from {{ ref("cc_parcel") }} as cpt
+right join {{ ref("stg_cc_parcel_products") }} as ppdt on cpt.parcel_id = ppdt.parcel_id
